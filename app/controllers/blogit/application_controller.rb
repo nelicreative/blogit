@@ -7,7 +7,7 @@ module Blogit
     helper Blogit::LayoutHelper
     helper Blogit::PostsHelper
     helper Blogit::CommentsHelper
-    
+
     helper_method :blogit_conf
 
     # A helper method to access the {Blogit::configuration} at the class level.
@@ -26,5 +26,5 @@ module Blogit
     end
 
   end
-  
+
 end

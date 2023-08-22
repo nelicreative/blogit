@@ -17,6 +17,10 @@ module Blogit
     #   "hidden". ("Hidden" {Post posts} are those that may not be viewed by the public).
     HIDDEN_STATES = [:draft, :archive]
 
+    # Should the routes of the main app be accessible without
+    # the "main_app." prefix ?
+    attr_accessor :inline_main_app_named_routes
+
     # When using redcarpet as content parser, pass these options as defaults.
     REDCARPET_OPTIONS = {
       hard_wrap: true,

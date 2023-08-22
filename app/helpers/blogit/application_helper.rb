@@ -1,17 +1,29 @@
 module Blogit
   module ApplicationHelper
-    
+    # Can search for named routes directly in the main app, omitting
+    # the "main_app." prefix
+    def method_missing method, *args, &block
+      if main_app_url_helper?(method)
+        main_app.send(method, *args)
+      else
+        super
+      end
+    end
+    def respond_to?(method)
+      main_app_url_helper?(method) or super
+    end
+
     # Format content using the {Blogit::Configuration#default_parser_class default_parser_class}
     #
     # content - A String containing the content to be formatted (defaults: nil)
     # block   - A Proc that returns a String of content to be formatted
     #
     # Examples
-    # 
+    #
     #   format_content("# This is a Markdown header")
     #   # => "<h1>This is a Markdown header</h1>"
     #
-    #   format_content do 
+    #   format_content do
     #     "some text"
     #   end
     #   # => "<p>some text</p>"
@@ -64,11 +76,15 @@ module Blogit
     def actions(content_or_options={}, options ={}, &block)
       div_tag_with_default_class("actions", content_or_options, options, &block)
     end
-    
-    
+
     private
-    
-    
+
+    def main_app_url_helper?(method)
+      Blogit::configuration.inline_main_app_named_routes and
+        (method.to_s.end_with?('_path') or method.to_s.end_with?('_url')) and
+        main_app.respond_to?(method)
+    end
+
     # Creates an HTML div with a default class value added
     #
     # default_class      - The CSS class name to add to the div
@@ -89,7 +105,5 @@ module Blogit
       options[:class] = Array(options[:class]) + [default_class]
       content_tag(:div, content, options)
     end
-
   end
-  
 end
