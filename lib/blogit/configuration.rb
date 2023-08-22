@@ -21,6 +21,8 @@ module Blogit
     # the "main_app." prefix ?
     attr_accessor :inline_main_app_named_routes
 
+    attr_accessor :storage_bucket_name
+
     # When using redcarpet as content parser, pass these options as defaults.
     REDCARPET_OPTIONS = {
       hard_wrap: true,
