@@ -29,4 +29,4 @@ gem 'rake', '< 11.0'
 # Removing this seems to break the Travis-CI flow.
 # The rake task "app:acts_as_taggable_on_engine:install:migrations" doesn't work
 # without it here
-gem 'acts-as-taggable-on', "~> 3.5.0"
+gem 'acts-as-taggable-on'
