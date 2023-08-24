@@ -8,7 +8,6 @@ class CreateBlogitPosts < ActiveRecord::Migration
       t.references :blogger, polymorphic: true
       t.timestamps
     end
-    add_index :blogit_posts, [:blogger_type, :blogger_id]
 
     reversible do |dir|
       dir.up do
