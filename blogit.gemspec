@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "kaminari"
   s.add_runtime_dependency "jquery-rails"
   s.add_runtime_dependency "acts-as-taggable-on"
+  s.add_runtime_dependency 'globalize'
 
 
   s.add_development_dependency "appraisal"

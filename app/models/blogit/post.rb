@@ -5,6 +5,7 @@ module Blogit
     require "acts-as-taggable-on"
 
     acts_as_taggable
+    translates :title, :body, :description
 
     self.paginates_per(Blogit.configuration.posts_per_page)
 
